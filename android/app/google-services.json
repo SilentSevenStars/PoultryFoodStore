@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "81103611317",
+    "project_id": "poultry-food-supply-mob-rjp557",
+    "storage_bucket": "poultry-food-supply-mob-rjp557.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81103611317:android:74ee27fd4fcd4dd4a2a5fc",
+        "android_client_info": {
+          "package_name": "com.mycompany.poultryfoodsupplymobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9jfB38aOtejXvOlLH1cBDzEb5ZYTQUXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
