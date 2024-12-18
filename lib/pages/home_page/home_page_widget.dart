@@ -65,7 +65,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         final homePageUserRecord = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -294,7 +297,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         children: [
                           Container(
                             width: double.infinity,
-                            height: 97.0,
+                            height: 100.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).primary,
                             ),

@@ -54,7 +54,9 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<List<ProductRecord>>(
-      stream: queryProductRecord(),
+      stream: queryProductRecord(
+        queryBuilder: (productRecord) => productRecord.orderBy('productName'),
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -76,7 +78,10 @@ class _ProductPageWidgetState extends State<ProductPageWidget> {
         List<ProductRecord> productPageProductRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,

@@ -154,14 +154,6 @@ class _QuantityStockWidgetState extends State<QuantityStockWidget> {
                             safeSetState(() {
                               _model.quantityTxtTextController?.text =
                                   FFAppState().quantityValue.toString();
-                              _model.quantityTxtFocusNode?.requestFocus();
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                _model.quantityTxtTextController?.selection =
-                                    TextSelection.collapsed(
-                                  offset: _model
-                                      .quantityTxtTextController!.text.length,
-                                );
-                              });
                             });
                           }
                         },
@@ -185,15 +177,6 @@ class _QuantityStockWidgetState extends State<QuantityStockWidget> {
                                 safeSetState(() {
                                   _model.quantityTxtTextController?.text =
                                       FFAppState().quantityValue.toString();
-                                  _model.quantityTxtFocusNode?.requestFocus();
-                                  WidgetsBinding.instance
-                                      .addPostFrameCallback((_) {
-                                    _model.quantityTxtTextController
-                                        ?.selection = TextSelection.collapsed(
-                                      offset: _model.quantityTxtTextController!
-                                          .text.length,
-                                    );
-                                  });
                                 });
                               } else {
                                 if (functions.convertToInt(
@@ -325,17 +308,6 @@ class _QuantityStockWidgetState extends State<QuantityStockWidget> {
                                   safeSetState(() {
                                     _model.quantityTxtTextController?.text =
                                         FFAppState().quantityValue.toString();
-                                    _model.quantityTxtFocusNode?.requestFocus();
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) {
-                                      _model.quantityTxtTextController
-                                          ?.selection = TextSelection.collapsed(
-                                        offset: _model
-                                            .quantityTxtTextController!
-                                            .text
-                                            .length,
-                                      );
-                                    });
                                   });
                                 }
                               },

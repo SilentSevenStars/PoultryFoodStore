@@ -154,13 +154,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
                             safeSetState(() {
                               _model.textController?.text =
                                   FFAppState().quantityValue.toString();
-                              _model.textFieldFocusNode?.requestFocus();
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                _model.textController?.selection =
-                                    TextSelection.collapsed(
-                                  offset: _model.textController!.text.length,
-                                );
-                              });
                             });
                           } else {
                             await showDialog(
@@ -203,15 +196,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
                                 safeSetState(() {
                                   _model.textController?.text =
                                       FFAppState().quantityValue.toString();
-                                  _model.textFieldFocusNode?.requestFocus();
-                                  WidgetsBinding.instance
-                                      .addPostFrameCallback((_) {
-                                    _model.textController?.selection =
-                                        TextSelection.collapsed(
-                                      offset:
-                                          _model.textController!.text.length,
-                                    );
-                                  });
                                 });
                               } else {
                                 if (containerProductRecord.stock <
@@ -239,15 +223,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
                                   safeSetState(() {
                                     _model.textController?.text =
                                         FFAppState().quantityValue.toString();
-                                    _model.textFieldFocusNode?.requestFocus();
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) {
-                                      _model.textController?.selection =
-                                          TextSelection.collapsed(
-                                        offset:
-                                            _model.textController!.text.length,
-                                      );
-                                    });
                                   });
                                 } else {
                                   if (_model.quantityCheck! < 1) {
@@ -273,15 +248,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
                                     safeSetState(() {
                                       _model.textController?.text =
                                           FFAppState().quantityValue.toString();
-                                      _model.textFieldFocusNode?.requestFocus();
-                                      WidgetsBinding.instance
-                                          .addPostFrameCallback((_) {
-                                        _model.textController?.selection =
-                                            TextSelection.collapsed(
-                                          offset: _model
-                                              .textController!.text.length,
-                                        );
-                                      });
                                     });
                                   }
                                 }
@@ -369,13 +335,6 @@ class _QuantityWidgetState extends State<QuantityWidget> {
                             safeSetState(() {
                               _model.textController?.text =
                                   FFAppState().quantityValue.toString();
-                              _model.textFieldFocusNode?.requestFocus();
-                              WidgetsBinding.instance.addPostFrameCallback((_) {
-                                _model.textController?.selection =
-                                    TextSelection.collapsed(
-                                  offset: _model.textController!.text.length,
-                                );
-                              });
                             });
                           } else {
                             await showDialog(

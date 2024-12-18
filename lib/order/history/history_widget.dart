@@ -38,7 +38,10 @@ class _HistoryWidgetState extends State<HistoryWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -361,10 +364,12 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                 PagedListView<DocumentSnapshot<Object?>?,
                     OrderRecord>.separated(
                   pagingController: _model.setListViewController(
-                    OrderRecord.collection.where(
-                      'status',
-                      isEqualTo: 'complete',
-                    ),
+                    OrderRecord.collection
+                        .where(
+                          'status',
+                          isEqualTo: 'complete',
+                        )
+                        .orderBy('created_at', descending: true),
                   ),
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -428,95 +433,116 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                             width: double.infinity,
                             height: 100.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: const [
-                                BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Color(0x33000000),
-                                  offset: Offset(
-                                    0.0,
-                                    2.0,
-                                  ),
-                                )
-                              ],
+                              color: FlutterFlowTheme.of(context).primary,
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
-                              child: Column(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'ID: ${listViewOrderRecord.orderID}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Create at:${listViewOrderRecord.createdAt?.toString()}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  StreamBuilder<List<ItemListRecord>>(
-                                    stream: queryItemListRecord(
-                                      queryBuilder: (itemListRecord) =>
-                                          itemListRecord.where(
-                                        'order_ref',
-                                        isEqualTo:
-                                            listViewOrderRecord.reference,
-                                      ),
-                                    ),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                      List<ItemListRecord>
-                                          textItemListRecordList =
-                                          snapshot.data!;
-
-                                      return Text(
-                                        'Items: ${textItemListRecordList.length.toString()}',
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'ID: ${listViewOrderRecord.orderID}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
                                               letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
                                             ),
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    'Total Price: ${listViewOrderRecord.totalPrice.toString()}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
+                                      ),
+                                      Text(
+                                        'Create at:${listViewOrderRecord.createdAt?.toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                      StreamBuilder<List<ItemListRecord>>(
+                                        stream: queryItemListRecord(
+                                          queryBuilder: (itemListRecord) =>
+                                              itemListRecord.where(
+                                            'order_ref',
+                                            isEqualTo:
+                                                listViewOrderRecord.reference,
+                                          ),
                                         ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<ItemListRecord>
+                                              textItemListRecordList =
+                                              snapshot.data!;
+
+                                          return Text(
+                                            'Items: ${textItemListRecordList.length.toString()}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          );
+                                        },
+                                      ),
+                                      Text(
+                                        'Total Price: ${listViewOrderRecord.totalPrice.toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_ios_sharp,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    size: 24.0,
                                   ),
                                 ],
                               ),

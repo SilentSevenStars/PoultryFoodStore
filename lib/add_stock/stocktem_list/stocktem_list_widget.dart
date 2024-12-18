@@ -75,7 +75,10 @@ class _StocktemListWidgetState extends State<StocktemListWidget> {
         List<ProductRecord> stocktemListProductRecordList = snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -311,22 +314,26 @@ class _StocktemListWidgetState extends State<StocktemListWidget> {
                               ),
                             ),
                           ),
-                          FlutterFlowIconButton(
-                            borderRadius: 8.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.clear,
-                              color: FlutterFlowTheme.of(context).info,
-                              size: 24.0,
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                3.0, 0.0, 3.0, 0.0),
+                            child: FlutterFlowIconButton(
+                              borderRadius: 8.0,
+                              buttonSize: 40.0,
+                              fillColor: FlutterFlowTheme.of(context).primary,
+                              icon: Icon(
+                                Icons.clear,
+                                color: FlutterFlowTheme.of(context).info,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                safeSetState(() {
+                                  _model.searchTextController?.clear();
+                                });
+                                FFAppState().searchIsActive = false;
+                                safeSetState(() {});
+                              },
                             ),
-                            onPressed: () async {
-                              safeSetState(() {
-                                _model.searchTextController?.clear();
-                              });
-                              FFAppState().searchIsActive = false;
-                              safeSetState(() {});
-                            },
                           ),
                           FlutterFlowIconButton(
                             borderRadius: 8.0,
@@ -357,8 +364,11 @@ class _StocktemListWidgetState extends State<StocktemListWidget> {
                                   context: context,
                                   builder: (context) {
                                     return GestureDetector(
-                                      onTap: () =>
-                                          FocusScope.of(context).unfocus(),
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
                                       child: Padding(
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
@@ -458,8 +468,11 @@ class _StocktemListWidgetState extends State<StocktemListWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () =>
-                                              FocusScope.of(context).unfocus(),
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),
@@ -647,8 +660,11 @@ class _StocktemListWidgetState extends State<StocktemListWidget> {
                                       context: context,
                                       builder: (context) {
                                         return GestureDetector(
-                                          onTap: () =>
-                                              FocusScope.of(context).unfocus(),
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
                                           child: Padding(
                                             padding: MediaQuery.viewInsetsOf(
                                                 context),

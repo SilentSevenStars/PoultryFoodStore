@@ -119,4 +119,10 @@ class FFAppState extends ChangeNotifier {
   set currentPage(int value) {
     _currentPage = value;
   }
+
+  String _status = 'complete';
+  String get status => _status;
+  set status(String value) {
+    _status = value;
+  }
 }
