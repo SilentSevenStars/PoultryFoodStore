@@ -185,6 +185,8 @@ class _SupplierInformationWidgetState extends State<SupplierInformationWidget> {
                                                 false;
                                         if (confirmDialogResponse) {
                                           await widget.supplier!.delete();
+
+                                          context.pushNamed('Supplier');
                                         }
                                       },
                                       child: Icon(

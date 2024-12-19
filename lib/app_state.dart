@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -124,5 +126,12 @@ class FFAppState extends ChangeNotifier {
   String get status => _status;
   set status(String value) {
     _status = value;
+  }
+
+  DocumentReference? _admin =
+      FirebaseFirestore.instance.doc('/Role/7UMTaGEe59tqDuEVfQsr');
+  DocumentReference? get admin => _admin;
+  set admin(DocumentReference? value) {
+    _admin = value;
   }
 }
