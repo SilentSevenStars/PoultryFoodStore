@@ -176,7 +176,7 @@ class _AddSupplierWidgetState extends State<AddSupplierWidget> {
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.network(
-                                        'https://picsum.photos/seed/708/600',
+                                        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
                                         width: 100.0,
                                         height: 100.0,
                                         fit: BoxFit.cover,
@@ -790,6 +790,8 @@ class _AddSupplierWidgetState extends State<AddSupplierWidget> {
                                             email:
                                                 _model.emailTextController.text,
                                             photoUrl: _model.uploadedFileUrl,
+                                            address: _model
+                                                .addressTextController.text,
                                           ));
 
                                       context.pushNamed('Supplier');

@@ -360,6 +360,20 @@ class _ProductDescriptionWidgetState extends State<ProductDescriptionWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Text(
+                                  'Stock: ${productDescriptionProductRecord.stock.toString()}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 20.0, 0.0),
+                                child: Text(
                                   'ID: ${productDescriptionProductRecord.productID}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
