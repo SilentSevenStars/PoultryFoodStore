@@ -1,6 +1,12 @@
 # Poultry Food Supply Mobile App
 
-A new Flutter project.
+Joseph Matthew Ringor
+Justine Arvie Alcaraz
+Mark Louie Cacho
+Mark Andrew Baliguat
+Irish John Jacinto
+Aaron John Palad
+Nino Emmanuel Tadeo
 
 ## Getting Started
 
